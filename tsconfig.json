@@ -1,5 +1,4 @@
 {
-  "extends": "plasmo/templates/tsconfig.base",
   "exclude": [
     "node_modules"
   ],
@@ -9,6 +8,10 @@
     "./**/*.tsx"
   ],
   "compilerOptions": {
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
     "paths": {
       "~*": [
         "./*"
