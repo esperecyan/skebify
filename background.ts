@@ -27,9 +27,7 @@ chrome.runtime.onMessage.addListener((message, _, sendMessage) => {
   spi
     .then((e) => {
       console.log(e)
-      if (!!e) {
-        sendMessage(e)
-      }
+      sendMessage(e)
     })
     .catch(console.error)
   return true

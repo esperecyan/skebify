@@ -8,8 +8,6 @@ export const config: PlasmoCSConfig = {
 }
 
 async function upsertButton(data: SkebUserResponse) {
-  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Safely_inserting_external_content_into_a_page#html_sanitization
-  const anchorHTML = buildSkebLink(data.screen_name, buildDescription(data))
   const headerItems = document.querySelector(
     "[data-testid='UserProfileHeader_Items']"
   )
@@ -18,6 +16,11 @@ async function upsertButton(data: SkebUserResponse) {
   if (existing !== null) {
     existing.remove()
   }
+  if (data === null) {
+    return
+  }
+  // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Safely_inserting_external_content_into_a_page#html_sanitization
+  const anchorHTML = buildSkebLink(data.screen_name, buildDescription(data))
   headerItems.insertAdjacentHTML("afterbegin", DOMPurify.sanitize(anchorHTML))
 }
 
